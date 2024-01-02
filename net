@@ -10,6 +10,6 @@ do
    then
       sleep 10
    else
-      nmcli device wifi hotspot ssid GDis_Setup_WiFi password password >/dev/nul 2>&1
+      nmcli device wifi hotspot ssid GDis_WiFi_setup password password >/dev/nul 2>&1
    fi
 done
