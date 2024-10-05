@@ -1,0 +1,39 @@
+[Unit]
+
+Description=Lyrion Music Server
+After=network.target
+After=network-online.target
+
+[Service]
+
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
+Environment="LOGDIR=/var/log/squeezeboxserver/"
+Environment="PREFSDIR=/var/lib/squeezeboxserver/prefs"
+Environment="CACHEDIR=/var/lib/squeezeboxserver/cache"
+Environment="CHARSET=utf8"
+EnvironmentFile=-/etc/default/lyrionmusicserver
+
+User=squeezeboxserver
+
+LogsDirectory=squeezeboxserver
+LogsDirectoryMode=0755
+
+IgnoreSIGPIPE=no
+
+Restart=no
+
+ExecStart=/usr/sbin/squeezeboxserver --prefsdir $PREFSDIR --logdir $LOGDIR --cachedir $CACHEDIR --charset $CHARSET $SLIMOPTIONS
+ExecStartPost=sleep 4
+ExecStartPost=/usr/local/bin/squeezelite -V Headphone -z
+
+KillMode=control-group
+KillSignal=SIGTERM
+
+SendSIGHUP=no
+
+TimeoutStopSec=30
+SendSIGKILL=Yes
+
+[Install]
+
+WantedBy=multi-user.target
