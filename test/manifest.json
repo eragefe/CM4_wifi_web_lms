@@ -12,7 +12,7 @@
       ]
     },
     {
-      "chipFamily": "ESP8266",
+      "chipFamily": "ESP32c3",
       "parts": [
         { "path": "esp8266.bin", "offset": 0 }
       ]
